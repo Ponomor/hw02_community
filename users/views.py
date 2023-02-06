@@ -9,6 +9,13 @@ class SignUp(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 
+# class SignUp(CreateView):
+#     # """Собственная форма регистрации пользователя."""
+
+#     form_class = CreationForm
+#     success_url = reverse_lazy("posts:index")
+#     template_name = "users/signup.html"
+
 # class Login(CreateView):
 #     form_class = CreationForm
 #     success_url = reverse_lazy('login')
