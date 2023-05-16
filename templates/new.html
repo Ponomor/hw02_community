@@ -1,1 +1,26 @@
 {% extends "base.html" %}
+{% block title %}Создание новой записи{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+        <div class="card">
+            <div class="card-header">Создать запись</div>
+            <div class="card-body">
+                <body>
+
+                <form method="post" action={% if post %}"{% url 'post' post_id=post_views.pk %}"{% else %}"{% url 'new' %}"{% endif %}>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Отправить">
+                
+                </form>
+                </body>
+
+            </div> <!-- card body -->
+        </div> <!-- card -->
+    </div> <!-- col -->
+</div> <!-- row -->
+
+{% endblock %}
+
+

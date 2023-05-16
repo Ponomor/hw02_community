@@ -24,3 +24,15 @@ class Post(models.Model):
     
     def __str__(self):
         return self.text
+
+    def user_is_author(self,user):
+        print(user)
+        return True
+
+
+
+# class New(models.Model):
+#     class Meta:
+#         model = Post
+#         fields = ['text','pub_date', 'author', 'group']
+    

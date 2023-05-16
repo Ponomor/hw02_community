@@ -16,12 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import include, path 
+from django.contrib.flatpages import views
 
 urlpatterns = [
-    path('', include('posts.urls')),
+    # раздел администратора
+    path('admin/', admin.site.urls),
+    # flatpages
+    path('about/', include('django.contrib.flatpages.urls')),
+    # регистрация и авторизация
     path('auth/', include('users.urls')),
     path('auth/', include('django.contrib.auth.urls')),
-    path('admin/', admin.site.urls), 
+    # импорт из приложения posts
+    # path('', include('posts.urls')),
+]
+urlpatterns += [
+    path('about-us/', views.flatpage, {'url': '/about-us/'}, name='about'),
+    path('terms/', views.flatpage, {'url': '/terms/'}, name='terms'),
+    path('about-author/', views.flatpage, {'url': '/about-author/'}, name='about-author'),
+    path('about-spec/', views.flatpage, {'url': '/about-spec/'}, name='about-spec'),
+    path('', include('posts.urls')),
+]
     # path('login/', views.LoginView.as_view(), name= 'login' ),
     # path('logout/', views.LogoutView.as_view(), name ='logout'),
     # path('password_change/', views.PasswordChangeView.as_view(), name= 'password_change' ),
@@ -30,4 +44,3 @@ urlpatterns = [
     # path('password_reset/done', views.PasswordResetDoneView.as_view(), name='password_reset_confim'),
     # path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(),name='password_reset_confim'),
     # path('reset/done/', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-]

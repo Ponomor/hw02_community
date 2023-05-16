@@ -1,11 +1,16 @@
-<!doctype html>
-<html>
-  <head>
+{% extends "base.html" %}
+{% block title %}Записи сообщества {{ group.slug }} | Yatube{% endblock %}
+{% block content %}
+<h1> Записи сообщества {{ group.slug }} :</h1>
+
+  <!-- <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Записи сообщества {{ group.slug }} | Yatube</title>
-  </head>
-  <body>
+  </head> -->
+  
+  <!-- <body>
+    
     <h1>Лeв Толстой</h1>
     <p>
         Цитаты Льва Толстого
@@ -46,7 +51,17 @@
 Идя отъ ужина, мы съ Тишк[евичемъ] остановились у бардели и насъ накрылъ Крыжановскій, что,
  признаюсь, было мнѣ не совсѣмъ пріятно. Упрекаю себя за безхарактерность, что не высидѣлъ дома,
  и зa праздность цѣлаго дня. Это главный пунктъ. (2)</p>
-    <hr>
+    <hr> -->
+  <!-- </body> -->
+  {% for post in page %}
+  <h3>
+      Автор: {{ post.author.get_full_name }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}   
+  </h3>
+  <h4>{{ post }}</h4>
+  {% endfor %}
+  {% if page.has_other_pages %}
+  {% include "paginator.html" with items=page paginator=paginator %}
+  {% endif %}
+  {% endblock  %}
 
-  </body>
-</html>
+
