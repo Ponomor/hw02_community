@@ -7,12 +7,11 @@
             <div class="card-header">Создать запись</div>
             <div class="card-body">
                 <body>
-
-                <form method="post" action={% if post %}"{% url 'post' post_id=post_views.pk %}"{% else %}"{% url 'new' %}"{% endif %}>
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="Отправить">
-                
+                    <form method="post" action={% if post %}"{% url 'post' post_id=post_views.pk %}"{% else %}"{% url 'new' %}"{% endif %}>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Отправить1">
+                </form>
                 </form>
                 </body>
 

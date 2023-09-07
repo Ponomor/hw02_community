@@ -62,7 +62,7 @@ def post_edit(request, username, post_id):
     post_views = get_object_or_404(Post, pk=post_id, author=user) #post 
     # post = get_object_or_404(Post, id=post_id)
     if request.method == 'GET': #False
-        if request.user is not post_views.author:
+        if request.user.pk != post_views.author.pk:
             return redirect('post', post_id=post_views.pk, username=post_views.author.username)
         form = NewForm(instance=post_views)
 
