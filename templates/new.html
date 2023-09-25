@@ -4,14 +4,21 @@
 <div class="row justify-content-center">
     <div class="col-md-8 p-5">
         <div class="card">
-            <div class="card-header">Создать запись</div>
+            {% if post_views.pk %}
+            <div class="card-header">Редактировать запись</div>
+            {% else %}
+            <div class="card-header">Добавить запись</div>
+            {% endif %}
             <div class="card-body">
                 <body>
                     <form method="post" action={% if post %}"{% url 'post' post_id=post_views.pk %}"{% else %}"{% url 'new' %}"{% endif %}>
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <input type="submit" value="Отправить1">
-                </form>
+                        {% if post_views.pk %}
+                        <input type="submit" value="Сохранить">
+                        {% else %}
+                        <input type="submit" value="Добавить">
+                        {% endif %}
                 </form>
                 </body>
 
